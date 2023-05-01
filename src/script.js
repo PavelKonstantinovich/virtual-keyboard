@@ -44,6 +44,9 @@ document.addEventListener('keydown', (e) => {
   if (e.shiftKey && e.ctrlKey) {
     toggleLanguage();
   }
+  if (e.key === 'Tab' || e.altKey){
+    e.preventDefault();
+  }
   if (e.location === 2) {
     removeClass();
     document.querySelectorAll(`.${e.key}`)[1].classList.add('active');
@@ -62,3 +65,15 @@ key.forEach((el) => {
     e.target.classList.add('active');
   });
 });
+
+const beforeUnload = () => {
+  localStorage.setItem('language', language);
+}
+window.addEventListener('beforeunload', beforeUnload);
+
+const getLocalStorage = (e) => {
+  e.preventDefault()
+  language = localStorage.getItem('language');
+  addKeyboard(language);
+}
+window.addEventListener('DOMContentLoaded', getLocalStorage)
