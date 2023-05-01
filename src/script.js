@@ -12,9 +12,9 @@ const rendering = () => `
   `;
 
 document.body.insertAdjacentHTML('beforeend', rendering());
-const language = 'en';
+let language = 'en';
 
-function addKeyboard() {
+function addKeyboard(language) {
   let keys = '';
   if (language === 'en') {
     for (let i = 0; i < en.length; i++) {
@@ -30,13 +30,20 @@ function addKeyboard() {
   document.querySelector('.keyboard').innerHTML = keys;
 }
 
-addKeyboard();
+addKeyboard(language);
 const key = document.querySelectorAll('.key');
 const removeClass = () => key.forEach((el) => el.classList.remove('active'));
-// console.log(ru.length);
 
+const toggleLanguage = () => {
+  language = (language === 'en') ? 'ru' : 'en';
+  addKeyboard(language)
+};
+document.querySelector('.btn').addEventListener('click', toggleLanguage);
 document.addEventListener('keydown', (e) => {
   document.querySelector('.text').focus();
+  if (e.shiftKey && e.ctrlKey) {
+    toggleLanguage();
+  }
   if (e.location === 2) {
     removeClass();
     document.querySelectorAll(`.${e.key}`)[1].classList.add('active');
