@@ -36,7 +36,7 @@ const removeClass = () => key.forEach((el) => el.classList.remove('active'));
 
 const toggleLanguage = () => {
   language = (language === 'en') ? 'ru' : 'en';
-  addKeyboard(language)
+  addKeyboard(language);
 };
 document.querySelector('.btn').addEventListener('click', toggleLanguage);
 document.addEventListener('keydown', (e) => {
@@ -44,7 +44,7 @@ document.addEventListener('keydown', (e) => {
   if (e.shiftKey && e.ctrlKey) {
     toggleLanguage();
   }
-  if (e.key === 'Tab' || e.altKey){
+  if (e.key === 'Tab' || e.altKey) {
     e.preventDefault();
   }
   if (e.location === 2) {
@@ -56,24 +56,32 @@ document.addEventListener('keydown', (e) => {
     removeClass();
     document.getElementById(`${e.which}`).classList.add('active');
   }
-  console.log(e);
 });
 
 key.forEach((el) => {
   el.addEventListener('click', (e) => {
     removeClass();
     e.target.classList.add('active');
+    if (!e.target.classList.contains('backspace') && !e.target.classList.contains('tab') && !e.target.classList.contains('lock') && !e.target.classList.contains('enter') && !e.target.classList.contains('Shift') && !e.target.classList.contains('Control') && !e.target.classList.contains('Alt') && !e.target.classList.contains('delete') && !e.target.classList.contains('space')) {
+      document.querySelector('.text').value += e.target.innerHTML;
+    } if (e.target.classList.contains('tab')) {
+      document.querySelector('.text').value += '    ';
+    } if (e.target.classList.contains('space')) {
+      document.querySelector('.text').value += ' ';
+    } if (e.target.classList.contains('enter')) {
+      document.querySelector('.text').value += '\n';
+    }
   });
 });
 
 const beforeUnload = () => {
   localStorage.setItem('language', language);
-}
+};
 window.addEventListener('beforeunload', beforeUnload);
 
-const getLocalStorage = (e) => {
-  e.preventDefault()
-  language = localStorage.getItem('language');
-  addKeyboard(language);
-}
-window.addEventListener('DOMContentLoaded', getLocalStorage)
+// const getLocalStorage = (e) => {
+//   e.preventDefault()
+//   language = localStorage.getItem('language');
+//   addKeyboard(language);
+// }
+// window.addEventListener('DOMContentLoaded', getLocalStorage)

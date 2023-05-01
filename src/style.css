@@ -60,5 +60,11 @@
 .lock-active {
   background-color: aqua;
   box-shadow: 0px 0px 5px 5px azure;
-  transition: all 0.8s;
+}
+.btn {
+  cursor: pointer;
+  transition: all 0.4s;
+  background-color: azure;
+  height: 30px;
+  border-radius: 8px;
 }
