@@ -1,0 +1,25 @@
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#text {
+  width: 95%;
+  box-sizing: border-box;
+  height: 300px;
+  border: 1px solid black;
+  display: block;
+  margin: 20px auto;
+}
+.key {
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  /* text-align: center; */
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(14,1fr);
+  grid-gap: 5px;
+}
