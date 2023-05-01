@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 
-#text {
+.text {
   width: 95%;
   box-sizing: border-box;
   height: 300px;
@@ -21,8 +21,8 @@
   text-transform: uppercase;
   padding: 10px;
   cursor: pointer;
-  transition: all 0.7s;
-  box-shadow: 0px 2px 5px 5px black;
+  transition: all 0.4s;
+  /* box-shadow: 0px 2px 5px 5px black; */
 }
 
 .big-key {
@@ -43,8 +43,8 @@
 .tab,
 .caps,
 .enter,
-.shift,
-.control {
+.Control,
+.Shift {
   grid-column: span 2;
 }
 
@@ -56,7 +56,8 @@
   background-color: rgb(189, 248, 248);
 }
 
-.active {
+.active,
+.lock-active {
   background-color: aqua;
-  box-shadow: 0px 2px 5px 5px azure;
+  box-shadow: 0px 0px 5px 5px azure;
 }
