@@ -12,22 +12,23 @@ const rendering = () => `
   `;
 
 document.body.insertAdjacentHTML('beforeend', rendering());
-let language = 'en';
+let language = localStorage.getItem('language') === 'en' ? 'en' : 'ru';
 
 function addKeyboard(language) {
   let keys = '';
   if (language === 'en') {
-    for (let i = 0; i < en.length; i++) {
+    for (let i = 0; i < en.length; i += 1) {
       const item = en[i].length > 1 ? `<div id="${which[i]}" class="key big-key ${en[i]}">${en[i]}</div>` : `<div  id="${which[i]}" class="key">${en[i]}</div>`;
       keys += item;
     }
   } else {
-    for (let i = 0; i < ru.length; i++) {
+    for (let i = 0; i < ru.length; i += 1) {
       const item = ru[i].length > 1 ? `<div id="${which[i]}" class="key big-key ${ru[i]}">${ru[i]}</div>` : `<div  id="${which[i]}" class="key">${ru[i]}</div>`;
       keys += item;
     }
   }
   document.querySelector('.keyboard').innerHTML = keys;
+  localStorage.setItem('language', language);
 }
 
 addKeyboard(language);
@@ -37,8 +38,9 @@ const removeClass = () => key.forEach((el) => el.classList.remove('active'));
 const toggleLanguage = () => {
   language = (language === 'en') ? 'ru' : 'en';
   addKeyboard(language);
+  location.reload();
 };
-document.querySelector('.btn').addEventListener('click', toggleLanguage);
+document.querySelector('.btn').addEventListener('click', toggleLanguage, { passive: true });
 document.addEventListener('keydown', (e) => {
   document.querySelector('.text').focus();
   if (e.shiftKey && e.ctrlKey) {
@@ -73,15 +75,3 @@ key.forEach((el) => {
     }
   });
 });
-
-const beforeUnload = () => {
-  localStorage.setItem('language', language);
-};
-window.addEventListener('beforeunload', beforeUnload);
-
-// const getLocalStorage = (e) => {
-//   e.preventDefault()
-//   language = localStorage.getItem('language');
-//   addKeyboard(language);
-// }
-// window.addEventListener('DOMContentLoaded', getLocalStorage)
