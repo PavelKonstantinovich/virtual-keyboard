@@ -1,0 +1,70 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text {
+  width: 95%;
+  box-sizing: border-box;
+  height: 300px;
+  border: 1px solid black;
+  display: block;
+  margin: 20px auto;
+}
+
+.key {
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: azure;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.4s;
+  /* box-shadow: 0px 2px 5px 5px black; */
+}
+
+.big-key {
+  text-transform: capitalize;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(15, [col]1fr);
+  grid-template-rows: repeat(5, [row]1fr);
+  grid-gap: 5px;
+  background-color: black;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.backspace,
+.tab,
+.caps,
+.enter,
+.Control,
+.Shift {
+  grid-column: span 2;
+}
+
+.space {
+  grid-column: span 5;
+}
+
+.key:hover {
+  background-color: rgb(189, 248, 248);
+}
+
+.active,
+.lock-active {
+  background-color: aqua;
+  box-shadow: 0px 0px 5px 5px azure;
+}
+.btn {
+  cursor: pointer;
+  transition: all 0.4s;
+  background-color: azure;
+  height: 30px;
+  border-radius: 8px;
+}
